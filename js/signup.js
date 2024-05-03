@@ -48,52 +48,55 @@ let CreateUser = (evt) => {
   let initialPassword = document.getElementById("initialPasswordInput");
   let confirmPassword = document.getElementById("confirmPasswordInput");
 
-  // if (initialPassword.value == confirmPassword.value) {
-  //   let approvedPassword = initialPassword;
-  //   createUserWithEmailAndPassword(
-  //     auth,
-  //     emailAddress.value,
-  //     approvedPassword.value
-  //   )
-  //     .then((user) => {
-  //       console.log(approvedPassword.value);
-  //       console.log(user);
-  //       alert(`User ${emailAddress.value} Created`);
+  if (initialPassword.value == confirmPassword.value) {
+    let approvedPassword = initialPassword;
+    createUserWithEmailAndPassword(
+      auth,
+      emailAddress.value,
+      approvedPassword.value
+    )
+      .then((user) => {
+        console.log(approvedPassword.value);
+        console.log(user);
+        alert(`User ${emailAddress.value} Created`);
 
-  //       sessionStorage.setItem("keyFirstName", firstName.value);
-  //       sessionStorage.setItem("keyLastName", lastName.value);
-  //       sessionStorage.setItem("keyEmailAddress", emailAddress.value);
-  //       sessionStorage.setItem("keyPassword", approvedPassword.value);
-  sessionStorage.setItem("keyUserLogIn", 1);
-  CheckHeader();
+        sessionStorage.setItem("keyFirstName", firstName.value);
+        sessionStorage.setItem("keyLastName", lastName.value);
+        sessionStorage.setItem("keyEmailAddress", emailAddress.value);
+        sessionStorage.setItem("keyPassword", approvedPassword.value);
+        sessionStorage.setItem("keyUserLogIn", 1);
+        CheckHeader();
 
-  myAccountName.innerText = `Hi ${sessionStorage.getItem("keyFirstName")}!`;
+        myAccountName.innerText = `Hi ${sessionStorage.getItem(
+          "keyFirstName"
+        )}!`;
 
-  //Close SignUp New User Form
-  const signUpHTML = document.getElementById("section-SignUp");
-  signUpHTML.classList.add("is-hidden");
+        //Close SignUp New User Form
+        const signUpHTML = document.getElementById("section-SignUp");
+        signUpHTML.classList.add("is-hidden");
 
-  homeBtn.classList.add("active");
+        homeBtn.classList.add("active");
+      })
+      .catch((error) => {
+        // alert(error.message);
+        console.log(error.code);
+        console.log(error.message);
 
-  //       })
-  //       .catch((error) => {
-  //         if ((error.code = "auth/email-already-in-use")) {
-  //           alert(
-  //             `User ${emailAddress.value} Already in use. Please new sign-up email`
-  //           );
-  //         } else if ((error.code = "auth/weak-password")) {
-  //           alert(
-  //             `Password should be at least 6 characters (auth/weak-password).`
-  //           );
-  //         } else {
-  //           alert(error.message);
-  //           console.log(error.code);
-  //           console.log(error.message);
-  //         }
-  //       });
-  //   } else {
-  //     alert("Please enter matching Passwords!");
-  //   }
+        if (error.code == "auth/weak-password") {
+          alert(
+            `Password should be at least 6 characters (auth/weak-password).`
+          );
+          return;
+        } else if (error.code == "auth/email-already-in-use") {
+          alert(
+            `User ${emailAddress.value} Already in use. Please use new sign-up email`
+          );
+          return;
+        }
+      });
+  } else {
+    alert("Please enter matching Passwords!");
+  }
 };
 
 MainForm.addEventListener("submit", CreateUser);
