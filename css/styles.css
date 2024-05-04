@@ -1,0 +1,4 @@
+.modal-header {
+  flex-direction: column;
+  align-items: stretch;
+}

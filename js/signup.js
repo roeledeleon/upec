@@ -13,28 +13,8 @@ import { CheckHeader } from "./header.js";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const homeBtn = document.getElementById("nav-link-home");
-const signUpBtn = document.getElementById("dropdown-signup");
 const myAccountName = document.getElementById("dropdown-account-name");
-
-const btnCloseSignUpForm = document.getElementById("btn-close-signupform");
-const signUpHTML = document.getElementById("section-SignUp");
-
-let SectionSignUpInit = (evt) => {
-  evt.preventDefault();
-
-  // Displays Sign Up New User Form
-  signUpHTML.classList.remove("is-hidden");
-  homeBtn.classList.remove("active");
-};
-
-let SectionSignUpClose = (evt) => {
-  evt.preventDefault();
-
-  // Hides Sign Up New User Form
-  signUpHTML.classList.add("is-hidden");
-  homeBtn.classList.add("active");
-};
+const createUserBtn = document.getElementById("btn-login");
 
 let CreateUser = (evt) => {
   evt.preventDefault();
@@ -47,6 +27,17 @@ let CreateUser = (evt) => {
   let emailAddress = document.getElementById("emailAddressInput");
   let initialPassword = document.getElementById("initialPasswordInput");
   let confirmPassword = document.getElementById("confirmPasswordInput");
+
+  if (
+    firstName.value === "" ||
+    lastName.value === "" ||
+    emailAddress.value === "" ||
+    initialPassword === "" ||
+    confirmPassword === ""
+  ) {
+    alert("Invalid Input. Please complete all input values!");
+    return;
+  }
 
   if (initialPassword.value == confirmPassword.value) {
     let approvedPassword = initialPassword;
@@ -74,8 +65,6 @@ let CreateUser = (evt) => {
         //Close SignUp New User Form
         const signUpHTML = document.getElementById("section-SignUp");
         signUpHTML.classList.add("is-hidden");
-
-        homeBtn.classList.add("active");
       })
       .catch((error) => {
         // alert(error.message);
@@ -92,6 +81,9 @@ let CreateUser = (evt) => {
             `User ${emailAddress.value} Already in use. Please use new sign-up email`
           );
           return;
+        } else if (error.code == "auth/missing-password") {
+          alert(`Please input password! (auth/missing-password)`);
+          return;
         }
       });
   } else {
@@ -99,7 +91,4 @@ let CreateUser = (evt) => {
   }
 };
 
-MainForm.addEventListener("submit", CreateUser);
-signUpBtn.addEventListener("click", SectionSignUpInit);
-btnCloseSignUpForm.addEventListener("click", SectionSignUpClose);
-// }
+createUserBtn.addEventListener("click", CreateUser);

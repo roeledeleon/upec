@@ -36,88 +36,203 @@
     <main>
       <!-- Hero -->
       <div include-html="./partials/hero.html"></div>
-      <!-- Sign Up New User -->
-      <div class="container-fluid">
-        <div class="is-hidden" id="section-SignUp">
-          <form class="MainForm" id="MainForm">
-            <button
-              type="button"
-              class="btn-close"
-              id="btn-close-signupform"
-              style="float: right"
-              aria-label="Close"
-            ></button>
-            <h2 class="display-2 mb-3">Sign-Up New User</h2>
+      <!-- Login -->
+      <div id="section-LogIn">
+        <div
+          class="modal fade"
+          id="modalLogIn"
+          tabindex="-1"
+          aria-labelledby="modalLogIn"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button
+                  type="button"
+                  class="btn-close"
+                  id="btn-close-loginform"
+                  data-bs-dismiss="modal"
+                  style="float: right"
+                  aria-label="Close"
+                ></button>
+                <h2
+                  class="modal-title display-2 mb-3"
+                  style="float: left"
+                  id="modalLogIn"
+                >
+                  Log-In
+                </h2>
+              </div>
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <form class="LoginForm" id="LoginForm">
+                    <!-- <button
+                      type="button"
+                      class="btn-close"
+                      id="btn-close-loginform"
+                      style="float: right"
+                      aria-label="Close"
+                    ></button>
+                    <h2 class="display-2 mb-3">Log-In</h2> -->
+                    <div class="form-floating">
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="loginEmailAddressInput"
+                        placeholder="name@example.com"
+                        required
+                      />
+                      <label for="floatingloginEmailAddressInput"
+                        >Email address</label
+                      >
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="loginPasswordInput"
+                        placeholder="initialPassword"
+                        required
+                      />
+                      <label for="floatingloginPasswordInput">Password</label>
+                    </div>
 
-            <div class="form-floating">
-              <input
-                type="text"
-                class="form-control"
-                id="firstNameInput"
-                placeholder="firstName"
-                required
-              />
-              <label for="floatingFirstName">First Name</label>
-              <div class="valid-feedback">Looks good!</div>
+                    <a>
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="float: right"
+                        id="btn-login"
+                      >
+                        Log In
+                      </button>
+                    </a>
+
+                    <a>
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="float: left"
+                        data-bs-dismiss="modal"
+                        id="btn-cancel-login"
+                      >
+                        Cancel
+                      </button>
+                    </a>
+                  </form>
+                </div>
+              </div>
             </div>
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="lastNameInput"
-                placeholder="lastName"
-              />
-              <label for="floatingLastName">Last Name</label>
+          </div>
+        </div>
+      </div>
+      <!-- Sign Up New User -->
+      <div id="section-SignUp">
+        <div
+          class="modal fade"
+          id="modalSignUp"
+          tabindex="-1"
+          aria-labelledby="modalSignUp"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button
+                  type="button"
+                  class="btn-close"
+                  id="btn-close-signupform"
+                  data-bs-dismiss="modal"
+                  style="float: right"
+                  aria-label="Close"
+                ></button>
+                <h2
+                  class="modal-title display-2 mb-3"
+                  style="float: left"
+                  id="modalSignUp"
+                >
+                  Sign-Up New User
+                </h2>
+              </div>
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <form class="MainForm" id="MainForm">
+                    <div class="form-floating">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="firstNameInput"
+                        placeholder="firstName"
+                        required
+                      />
+                      <label for="floatingFirstName">First Name</label>
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="lastNameInput"
+                        placeholder="lastName"
+                      />
+                      <label for="floatingLastName">Last Name</label>
+                    </div>
+                    <div class="form-floating">
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="emailAddressInput"
+                        placeholder="name@example.com"
+                        required
+                      />
+                      <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="initialPasswordInput"
+                        placeholder="initialPassword"
+                        required
+                      />
+                      <label for="floatingInitialPassword">Password</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="confirmPasswordInput"
+                        placeholder="confirmPassword"
+                        required
+                      />
+                      <label for="floatingConfirmPassword"
+                        >Confirm Password</label
+                      >
+                    </div>
+                    <button
+                      type="submit"
+                      class="btn btn-primary me-2"
+                      style="float: left"
+                      data-bs-dismiss="modal"
+                      id="btn-create-user"
+                    >
+                      Create User
+                    </button>
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      style="float: left"
+                      data-bs-dismiss="modal"
+                      id="btn-cancel-signup"
+                    >
+                      Cancel
+                    </button>
+                  </form>
+                </div>
+              </div>
             </div>
-            <div class="form-floating">
-              <input
-                type="email"
-                class="form-control"
-                id="emailAddressInput"
-                placeholder="name@example.com"
-                required
-              />
-              <label for="floatingInput">Email address</label>
-            </div>
-            <div class="form-floating">
-              <input
-                type="password"
-                class="form-control"
-                id="initialPasswordInput"
-                placeholder="initialPassword"
-                required
-              />
-              <label for="floatingInitialPassword">Password</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input
-                type="password"
-                class="form-control"
-                id="confirmPasswordInput"
-                placeholder="confirmPassword"
-                required
-              />
-              <label for="floatingConfirmPassword">Confirm Password</label>
-            </div>
-            <a href="login.html">
-              <button
-                type="submit"
-                class="btn btn-primary"
-                style="float: right"
-              >
-                Log In
-              </button>
-            </a>
-            <a href="login.html">
-              <button
-                type="submit"
-                class="btn btn-primary me-2"
-                style="float: right"
-              >
-                Create User
-              </button>
-            </a>
-          </form>
+          </div>
         </div>
       </div>
     </main>
@@ -133,16 +248,19 @@
     </script>
     <!-- js | Sign Up -->
     <script type="module" src="./js/signup.js"></script>
-    <!-- js | header -->
-    <script type="module" src="./js/header.js"></script>
-    <!-- js | home -->
-    <script type="module" src="./js/home.js"></script>
-    <!-- js | about -->
-    <script type="module" src="./js/about.js"></script>
-    <!-- js | news -->
-    <script type="module" src="./js/news.js"></script>
+    <!-- js | Log In -->
+    <script type="module" src="./js/login.js"></script>
     <!-- js | resources -->
     <script type="module" src="./js/resources.js"></script>
+    <!-- js | news -->
+    <script type="module" src="./js/news.js"></script>
+    <!-- js | header -->
+    <script type="module" src="./js/header.js"></script>
+    <!-- js | about -->
+    <script type="module" src="./js/about.js"></script>
+    <!-- js | home -->
+    <script type="module" src="./js/home.js"></script>
+
     <!-- js | myaccount -->
     <script type="module" src="./js/myaccount.js"></script>
 
