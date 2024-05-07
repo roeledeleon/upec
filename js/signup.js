@@ -97,7 +97,7 @@ let CreateUser = (evt) => {
         });
 
         alert(
-          `User ${emailAddress} created. \nPlease verify email address. \nOnce verified, you can now Log-In`
+          `User ${emailAddress} created. \nVerification email was sent to your address. \nOnce verified, you can now Log-In`
         );
       })
       .catch((error) => {

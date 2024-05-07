@@ -107,7 +107,7 @@ let LogInUser = () => {
             console.error(error);
           });
       } else {
-        alert("Email not verified\nKindly verify email send to your address.");
+        alert("Email not verified\nKindly verify email sent to your address.");
         return;
       }
     })
