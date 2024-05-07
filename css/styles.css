@@ -6,7 +6,7 @@
 /* Background Image */
 body::after {
   content: "";
-  background: url("../media/images/philippine-eagle_1200x600.png");
+  background: url("/media/images/philippine-eagle_1200x600.png");
   background-color: transparent;
   background-repeat: no-repeat;
   background-attachment: fixed;
