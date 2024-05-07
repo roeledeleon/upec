@@ -4,21 +4,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* body { */
-/* Margin bottom by footer height */
-/* font-family: 'Roboto', sans-serif;
-    margin-bottom: 100px; */
-
-/*
-    @media screen and (min-width: $tablet) {
-      margin-bottom: 79px;
-    }
-    @media screen and (min-width: $desktop) {
-      margin-bottom: 77px;
-    }
-    */
-/* } */
-
 p,
 h1,
 h2,
