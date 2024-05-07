@@ -12,9 +12,11 @@ export function CheckHeader() {
   if (keyUserLogIn == 1) {
     myAccountBtn.classList.add("is-hidden");
     userAccountBtn.classList.remove("is-hidden");
+    resourcesBtn.classList.remove("is-hidden");
   } else {
     myAccountBtn.classList.remove("is-hidden");
     userAccountBtn.classList.add("is-hidden");
+    resourcesBtn.classList.add("is-hidden");
   }
 }
 

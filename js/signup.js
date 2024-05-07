@@ -5,6 +5,7 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebas
 import {
   getAuth,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
 } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 import {
   getDatabase,
@@ -57,7 +58,7 @@ let CreateUser = (evt) => {
       .then((userCredential) => {
         const user = userCredential.user;
         // console.log(approvedPassword);
-        console.log(user);
+        // console.log(user);
 
         // place user data in sessionStorage
         sessionStorage.setItem("keyUID", user.uid);
@@ -65,7 +66,7 @@ let CreateUser = (evt) => {
         sessionStorage.setItem("keyLastName", lastName);
         sessionStorage.setItem("keyEmailAddress", emailAddress);
         sessionStorage.setItem("keyPassword", approvedPassword);
-        sessionStorage.setItem("keyUserLogIn", 1);
+        sessionStorage.setItem("keyUserLogIn", 0);
 
         // Add this user to Firebase Database
         var user_data = {
@@ -85,16 +86,24 @@ let CreateUser = (evt) => {
           "keyFirstName"
         )}!`;
 
-        alert(`User ${emailAddress} Created`);
-
         //Close SignUp New User Form
         const signUpHTML = document.getElementById("section-SignUp");
         signUpHTML.classList.add("is-hidden");
+
+        console.log(auth.currentUser);
+        sendEmailVerification(auth.currentUser).then(() => {
+          // Email verification sent!
+          // ...
+        });
+
+        alert(
+          `User ${emailAddress} created. \nPlease verify email address. \nOnce verified, you can now Log-In`
+        );
       })
       .catch((error) => {
         // alert(error.message);
-        console.log(errorCode);
-        console.log(errorMessage);
+        // console.log(errorCode);
+        // console.log(errorMessage);
         if (errorCode == "auth/weak-password") {
           alert(
             `Password should be at least 6 characters (auth/weak-password).`

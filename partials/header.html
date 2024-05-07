@@ -41,11 +41,11 @@
         <li class="nav-item" id="nav-link-about">
           <a class="nav-link" href="#">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" id="nav-link-news" href="#">News</a>
+        <li class="nav-item" id="nav-link-news">
+          <a class="nav-link" href="#">News</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" id="nav-link-resources" href="#">Resources</a>
+        <li class="nav-item is-hidden" id="nav-link-resources">
+          <a class="nav-link" href="#">Resources</a>
         </li>
         <li class="nav-item dropdown" id="nav-link-myaccount">
           <a
@@ -107,8 +107,15 @@
             </li>
 
             <li>
-              <a class="dropdown-item" href="#" id="dropdown-reset-password"
-                >Reset Password</a
+              <label
+                class="dropdown-item"
+                href="#"
+                id="dropdown-nav-reset-password"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                data-bs-toggle="modal"
+                data-bs-target="#modalNavResetPassword"
+                >Reset Password</label
               >
             </li>
             <li><hr class="dropdown-divider" /></li>

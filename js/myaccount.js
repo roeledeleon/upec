@@ -8,7 +8,6 @@ import { CheckHeader } from "./header.js";
 
 // ----- DECLARATIONS
 const LogOutProceedBtn = document.getElementById("btn-logout-proceed");
-console.log(LogOutProceedBtn);
 
 // ----- FUNCTIONS | SectionLogOut()
 let SectionLogOut = (evt) => {
