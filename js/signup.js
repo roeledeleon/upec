@@ -51,17 +51,6 @@ let CreateUser = (evt) => {
     // Don't continue to run code
   }
 
-  // if (
-  //   firstName.value === "" ||
-  //   lastName.value === "" ||
-  //   emailAddress.value === "" ||
-  //   initialPassword === "" ||
-  //   confirmPassword === ""
-  // ) {
-  //   alert("Invalid Input. Please complete all input values!");
-  //   return;
-  // }
-
   if (initialPassword == confirmPassword) {
     let approvedPassword = initialPassword;
     createUserWithEmailAndPassword(auth, emailAddress, approvedPassword)

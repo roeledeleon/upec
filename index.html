@@ -36,6 +36,7 @@
     <main>
       <!-- Hero -->
       <div include-html="./partials/hero.html"></div>
+
       <!-- Login -->
       <div id="section-LogIn">
         <div
@@ -67,14 +68,6 @@
               <div class="modal-body">
                 <div class="container-fluid">
                   <form class="LoginForm" id="LoginForm">
-                    <!-- <button
-                      type="button"
-                      class="btn-close"
-                      id="btn-close-loginform"
-                      style="float: right"
-                      aria-label="Close"
-                    ></button>
-                    <h2 class="display-2 mb-3">Log-In</h2> -->
                     <div class="form-floating">
                       <input
                         type="email"
@@ -238,6 +231,69 @@
           </div>
         </div>
       </div>
+      <!-- LogOut -->
+      <div id="section-LogOut">
+        <div
+          class="modal fade"
+          id="modalLogOut"
+          tabindex="-1"
+          aria-labelledby="modalLogOut"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-l">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button
+                  type="button"
+                  class="btn-close"
+                  id="btn-close-logoutform"
+                  data-bs-dismiss="modal"
+                  style="float: right"
+                  aria-label="Close"
+                ></button>
+                <h2
+                  class="modal-title display-2 mb-3"
+                  style="float: left"
+                  id="modalLogOut"
+                >
+                  Log-Out?
+                </h2>
+              </div>
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <form class="LogOutForm" id="LogOutForm">
+                    <a>
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="float: right"
+                        id="btn-logout-proceed"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        Proceed
+                      </button>
+                    </a>
+
+                    <a>
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="float: left"
+                        data-bs-dismiss="modal"
+                        id="btn-cancel-logout"
+                        aria-label="Close"
+                      >
+                        Cancel
+                      </button>
+                    </a>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <footer>
       <!-- footer -->
@@ -249,12 +305,12 @@
     <script>
       includeHTML();
     </script>
+    <!-- js | myaccount -->
+    <script type="module" src="./js/myaccount.js"></script>
     <!-- js | Sign Up -->
     <script type="module" src="./js/signup.js"></script>
     <!-- js | Log In -->
     <script type="module" src="./js/login.js"></script>
-    <!-- js | myaccount -->
-    <script type="module" src="./js/myaccount.js"></script>
     <!-- js | resources -->
     <script type="module" src="./js/resources.js"></script>
     <!-- js | news -->
@@ -265,7 +321,6 @@
     <script type="module" src="./js/about.js"></script>
     <!-- js | home -->
     <script type="module" src="./js/home.js"></script>
-
     <!-- js | bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

@@ -1,23 +1,44 @@
 // ----- IMPORTS
-import { CheckActiveNavBtn } from "./header.js";
+import {
+  getAuth,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+
+import { CheckHeader } from "./header.js";
 
 // ----- DECLARATIONS
-const myAccountBtn = document.getElementById("nav-link-myaccount");
-const logOutBtn = document.getElementById("dropdown-logout");
+const LogOutProceedBtn = document.getElementById("btn-logout-proceed");
+console.log(LogOutProceedBtn);
 
-// ----- FUNCTIONS | CheckNav()
-function CheckNav() {
-  CheckActiveNavBtn(4);
-}
+// ----- FUNCTIONS | SectionLogOut()
+let SectionLogOut = (evt) => {
+  evt.preventDefault();
+  LogOutUser();
+};
 
-// ----- FUNCTIONS | Log-Out()
+// ----- FUNCTIONS | LogOutUser()
+function LogOutUser() {
+  const auth = getAuth();
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+    })
+    .catch((error) => {
+      // An error happened.
+    });
 
-function LogOut() {
-  alert("Logging-Out");
+  //clear sessionStorage
+  sessionStorage.setItem("keyUserLogIn", 0);
+  let keyUserLogin = sessionStorage.getItem("keyUserLogIn");
+  CheckHeader();
+  sessionStorage.clear();
 
-  //sessionStorage.clear();
+  //clear emailAddress and loginPassword
+  let emailAddress = document.getElementById("loginEmailAddressInput");
+  let loginPassword = document.getElementById("loginPasswordInput");
+  emailAddress.value = "";
+  loginPassword.value = "";
 }
 
 // ----- ACTIVE LISTENERS
-myAccountBtn.addEventListener("click", CheckNav);
-logOutBtn.addEventListener("Click", LogOut);
+LogOutProceedBtn.addEventListener("click", SectionLogOut);

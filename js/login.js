@@ -44,9 +44,6 @@ let LogInUser = () => {
   let emailAddress = document.getElementById("loginEmailAddressInput").value;
   let loginPassword = document.getElementById("loginPasswordInput").value;
 
-  console.log(emailAddress);
-  console.log(loginPassword);
-
   // Validate input fields
   if (
     validate_email(emailAddress) == false ||
@@ -90,8 +87,6 @@ let LogInUser = () => {
             console.log(realtimeDB);
 
             // place user data in sessionStorage
-            console.log(realtimeDB.firstName);
-            console.log(realtimeDB.lastName);
             sessionStorage.setItem("keyFirstName", realtimeDB.firstName);
             sessionStorage.setItem("keyLastName", realtimeDB.lastName);
 

@@ -9,9 +9,12 @@ const userAccountBtn = document.getElementById("nav-link-useraccount");
 export function CheckHeader() {
   let keyUserLogIn = sessionStorage.getItem("keyUserLogIn");
 
-  if (keyUserLogIn != 0) {
+  if (keyUserLogIn == 1) {
     myAccountBtn.classList.add("is-hidden");
     userAccountBtn.classList.remove("is-hidden");
+  } else {
+    myAccountBtn.classList.remove("is-hidden");
+    userAccountBtn.classList.add("is-hidden");
   }
 }
 
