@@ -62,7 +62,7 @@ let LogInUser = () => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      console.log(user);
+      // console.log(user);
       if (user.emailVerified == true) {
         sessionStorage.setItem("keyUID", user.uid);
         sessionStorage.setItem("keyEmailAddress", emailAddress);
@@ -150,7 +150,6 @@ let SectionResetPassword = (evt) => {
   let resetPasswordEmailAddress = document.getElementById(
     "resetPasswordEmailAddressInput"
   ).value;
-  console.log(resetPasswordEmailAddress);
 
   // Validate input fields
   if (validate_email(resetPasswordEmailAddress) == false) {
@@ -169,8 +168,8 @@ let SectionResetPassword = (evt) => {
       const errorCode = error.code;
       const errorMessage = error.message;
 
-      console.log(errorCode);
-      console.log(errorMessage);
+      // console.log(errorCode);
+      // console.log(errorMessage);
       ManageErrors(errorCode, errorMessage);
       // ..
     });

@@ -90,7 +90,7 @@ let CreateUser = (evt) => {
         const signUpHTML = document.getElementById("section-SignUp");
         signUpHTML.classList.add("is-hidden");
 
-        console.log(auth.currentUser);
+        // console.log(auth.currentUser);
         sendEmailVerification(auth.currentUser).then(() => {
           // Email verification sent!
           // ...
