@@ -8,6 +8,12 @@ import { CheckHeader } from "./header.js";
 
 // ----- DECLARATIONS
 const LogOutProceedBtn = document.getElementById("btn-logout-proceed");
+const ProfileDisplayBtn = document.getElementById("dropdown-profile-display");
+
+// ----- FUNCTIONS | ProfileDispaly()
+function ProfileDisplay() {
+  alert("Profile Display");
+}
 
 // ----- FUNCTIONS | SectionLogOut()
 let SectionLogOut = (evt) => {
@@ -41,3 +47,4 @@ function LogOutUser() {
 
 // ----- ACTIVE LISTENERS
 LogOutProceedBtn.addEventListener("click", SectionLogOut);
+ProfileDisplayBtn.addEventListener("click", ProfileDisplay);

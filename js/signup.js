@@ -19,6 +19,8 @@ import { CheckHeader } from "./header.js";
 
 // ----- DECLARATIONS
 
+const debug = 1;
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -40,13 +42,12 @@ const notyf = new Notyf({
         className: "material-icons",
         tagName: "i",
         text: "warning",
-        dismissible: true,
       },
     },
     {
       type: "error",
       background: "indianred",
-      duration: 2000,
+      duration: 3000,
       dismissible: true,
     },
   ],
@@ -116,19 +117,19 @@ let CreateUser = (evt) => {
         )}!`;
 
         //Close SignUp New User Form
-        const signUpHTML = document.getElementById("section-SignUp");
-        signUpHTML.classList.add("is-hidden");
+        // const signUpHTML = document.getElementById("section-SignUp");
+        // signUpHTML.classList.add("is-hidden");
 
         // console.log(auth.currentUser);
+
         sendEmailVerification(auth.currentUser).then(() => {
           // Email verification sent!
-          // ...
-        });
-
-        notyf.open({
-          type: warning,
-          message: `User ${emailAddress} created. \nVerification email was sent to your address. \nOnce verified, you can now Log-In`,
-          duration: 5000,
+          notyf.open({
+            type: "warning",
+            message: `User ${emailAddress} created. Verification email was sent to your address. Once verified, you can now Log-In`,
+            duration: 5000,
+            dismissible: true,
+          });
         });
       })
       .catch((error) => {

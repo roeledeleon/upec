@@ -53,8 +53,23 @@ const notyf = new Notyf({
 
 const myAccountName = document.getElementById("dropdown-account-name");
 const logInBtn = document.getElementById("btn-login");
+const navLogInBtn = document.getElementById("nav-link-login");
 const submitBtn = document.getElementById("btn-reset-password-submit");
 const proceedBtn = document.getElementById("btn-nav-reset-password-proceed");
+const logInRememberMeBtn = document.getElementById("checkboxLoginRememberMe");
+
+// ----- FUNCTIONS | CheckBoxLogInRememberMe()
+function CheckBoxLogInRememberMe() {
+  //if checkbox Login Remember Me is checked
+  let checkboxLoginRememberMe = localStorage.getItem("keycheckboxLogIn");
+  if (checkboxLoginRememberMe != false) {
+    let emailAddress = localStorage.getItem("keyEmailAddress");
+    let loginPassword = localStorage.getItem("keyPassword");
+    logInRememberMeBtn.checked = checkboxLoginRememberMe;
+    document.getElementById("loginEmailAddressInput").value = emailAddress;
+    document.getElementById("loginPasswordInput").value = loginPassword;
+  }
+}
 
 // ----- FUNCTIONS | SectionLogInInit()
 let SectionLogInInit = (evt) => {
@@ -66,6 +81,7 @@ let SectionLogInInit = (evt) => {
 // ----- FUNCTIONS | LogInUser()
 let LogInUser = () => {
   "user strict";
+
   sessionStorage.setItem("keyUserLogIn", 0);
   let keyUserLogin = sessionStorage.getItem("keyUserLogIn");
 
@@ -85,7 +101,7 @@ let LogInUser = () => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      // console.log(user);
+
       if (user.emailVerified == true) {
         sessionStorage.setItem("keyUID", user.uid);
         sessionStorage.setItem("keyEmailAddress", emailAddress);
@@ -114,17 +130,26 @@ let LogInUser = () => {
               // place user data in sessionStorage
               sessionStorage.setItem("keyFirstName", realtimeDB.firstName);
               sessionStorage.setItem("keyLastName", realtimeDB.lastName);
-
               notyf.success({
-                message: `User ${realtimeDB.emailAddress} Log-In Successfully!`,
+                message: `User [${emailAddress}] Log-In Successfully!`,
                 duration: 5000,
               });
-
               myAccountName.innerText = `Hi ${sessionStorage.getItem(
                 "keyFirstName"
               )}!`;
 
               CheckHeader();
+
+              // checkbox LogIn Remember Me
+              if (logInRememberMeBtn.checked != false) {
+                localStorage.setItem("keycheckboxLogIn", true);
+                localStorage.setItem("keyEmailAddress", emailAddress);
+                localStorage.setItem("keyPassword", loginPassword);
+              } else {
+                localStorage.removeItem("keycheckboxLogIn");
+                localStorage.removeItem("keyEmailAddress");
+                localStorage.removeItem("keyPassword");
+              }
             } else {
               // console.log('No data available');
             }
@@ -133,9 +158,11 @@ let LogInUser = () => {
             console.error(error);
           });
       } else {
-        notyf.error({
-          message:
-            "Email not verified. \nKindly verify email sent to your address.",
+        notyf.open({
+          type: "warning",
+          message: `Email ${emailAddress} not verified. Kindly verify email sent to your address.`,
+          duration: 5000,
+          dismissible: true,
         });
         return;
       }
@@ -268,6 +295,7 @@ function ManageErrors(errorCode, emailAddress) {
   }
 }
 
+navLogInBtn.addEventListener("click", CheckBoxLogInRememberMe);
 logInBtn.addEventListener("click", SectionLogInInit);
 submitBtn.addEventListener("click", SectionResetPassword);
 proceedBtn.addEventListener("click", SectionNavResetPassword);

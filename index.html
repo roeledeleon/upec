@@ -95,7 +95,17 @@
                       />
                       <label for="floatingloginPasswordInput">Password</label>
                     </div>
-
+                    <div class="form-check mb-3">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkboxLoginRememberMe"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Remember Me
+                      </label>
+                    </div>
                     <label>
                       <button
                         type="submit"
@@ -134,6 +144,114 @@
                         Cancel
                       </button>
                     </label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Profile -->
+      <div id="section-ProfileDisplay">
+        <div
+          class="modal fade"
+          id="modalProfileDisplay"
+          tabindex="-1"
+          aria-labelledby="modalProfileDisplay"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button
+                  type="button"
+                  class="btn-close"
+                  id="btn-close-profiledisplayform"
+                  data-bs-dismiss="modal"
+                  style="float: right"
+                  aria-label="Close"
+                ></button>
+                <h2
+                  class="modal-title display-3 mb-3"
+                  style="float: left"
+                  id="modalProfileDisplay"
+                >
+                  Profile
+                </h2>
+              </div>
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <form class="ProfileDisplayForm" id="ProfileDisplayForm">
+                    <!-- <div class="form-floating">
+                  <input
+                  type="text"
+                  class="form-control"
+                  id="firstNameInput"
+                  placeholder="firstName"
+                  required
+                />
+                <label for="floatingFirstName">First Name</label>
+                <div class="valid-feedback">Looks good!</div>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastNameInput"
+                  placeholder="lastName"
+                />
+                <label for="floatingLastName">Last Name</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="emailAddressInput"
+                  placeholder="name@example.com"
+                  required
+                />
+                <label for="floatingInput">Email address</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="initialPasswordInput"
+                  placeholder="initialPassword"
+                  required
+                />
+                <label for="floatingInitialPassword">Password</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirmPasswordInput"
+                  placeholder="confirmPassword"
+                  required
+                />
+                <label for="floatingConfirmPassword"
+                  >Confirm Password</label
+                >
+              </div> -->
+                    <button
+                      type="submit"
+                      class="btn btn-primary me-2"
+                      style="float: left"
+                      data-bs-dismiss="modal"
+                      id="btn-profile-edit"
+                    >
+                      Edit User
+                    </button>
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      style="float: left"
+                      data-bs-dismiss="modal"
+                      id="btn-profile-cancel"
+                    >
+                      Cancel
+                    </button>
                   </form>
                 </div>
               </div>
