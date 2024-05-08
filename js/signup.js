@@ -58,7 +58,7 @@ let CreateUser = (evt) => {
       .then((userCredential) => {
         const user = userCredential.user;
         // console.log(approvedPassword);
-        // console.log(user);
+        console.log(user);
 
         // place user data in sessionStorage
         sessionStorage.setItem("keyUID", user.uid);
@@ -102,25 +102,9 @@ let CreateUser = (evt) => {
       })
       .catch((error) => {
         // alert(error.message);
-        // console.log(errorCode);
-        // console.log(errorMessage);
-        if (errorCode == "auth/weak-password") {
-          alert(
-            `Password should be at least 6 characters (auth/weak-password).`
-          );
-          return;
-        } else if (errorCode == "auth/email-already-in-use") {
-          alert(
-            `User ${emailAddress} Already in use. Please use new sign-up email`
-          );
-          return;
-        } else if (errorCode == "auth/missing-password") {
-          alert(`Please input password! (auth/missing-password)`);
-          return;
-        } else if (errorCode == "auth/invalid-credential") {
-          alert(`Please input correct password! (auth/missing-password)`);
-          return;
-        }
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        ManageErrors(errorCode, emailAddress);
       });
   } else {
     alert("Please enter matching Passwords!");
@@ -139,7 +123,7 @@ function validate_email(email) {
 
 function validate_password(password) {
   //Firebase only accepts lengths greater than 6
-  if (password < 6) {
+  if (password.length < 6) {
     return false;
   } else {
     return true;
@@ -155,6 +139,27 @@ function validate_field(field) {
     return false;
   } else {
     return true;
+  }
+}
+
+function ManageErrors(errorCode, emailAddress) {
+  if (errorCode == "auth/weak-password") {
+    alert(`Password should be at least 6 characters (auth/weak-password).`);
+    return;
+  } else if (errorCode == "auth/email-already-in-use") {
+    alert(
+      `User ${emailAddress} Already in use. \nPlease use new sign-up email`
+    );
+    return;
+  } else if (errorCode == "auth/missing-password") {
+    alert(`Please input password! (auth/missing-password)`);
+    return;
+  } else if (errorCode == "auth/invalid-credential") {
+    alert(`Please input correct password! (auth/missing-password)`);
+    return;
+  } else if (errorCode == "auth/too-many-requests") {
+    alert(`Error! (auth/too-many-requests)`);
+    return;
   }
 }
 

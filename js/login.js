@@ -117,7 +117,7 @@ let LogInUser = () => {
 
       // console.log(errorCode);
       // console.log(errorMessage);
-      ManageErrors(errorCode, errorMessage);
+      ManageErrors(errorCode);
     });
 };
 
@@ -170,7 +170,7 @@ let SectionResetPassword = (evt) => {
 
       // console.log(errorCode);
       // console.log(errorMessage);
-      ManageErrors(errorCode, errorMessage);
+      ManageErrors(errorCode);
       // ..
     });
 
@@ -195,12 +195,12 @@ let SectionNavResetPassword = (evt) => {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      ManageErrors(errorCode, errorMessage);
+      ManageErrors(errorCode);
       // ..
     });
 };
 
-function ManageErrors(errorCode, errorMessage) {
+function ManageErrors(errorCode, emailAddress) {
   if (errorCode == "auth/weak-password") {
     alert(`Password should be at least 6 characters (auth/weak-password).`);
     return;

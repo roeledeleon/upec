@@ -2,21 +2,23 @@ const homeBtn = document.getElementById("nav-link-home");
 const aboutBtn = document.getElementById("nav-link-about");
 const newsBtn = document.getElementById("nav-link-news");
 const resourcesBtn = document.getElementById("nav-link-resources");
+const loginBtn = document.getElementById("nav-link-login");
+const signupBtn = document.getElementById("nav-link-signup");
 const myAccountBtn = document.getElementById("nav-link-myaccount");
-
-const userAccountBtn = document.getElementById("nav-link-useraccount");
 
 export function CheckHeader() {
   let keyUserLogIn = sessionStorage.getItem("keyUserLogIn");
 
   if (keyUserLogIn == 1) {
-    myAccountBtn.classList.add("is-hidden");
-    userAccountBtn.classList.remove("is-hidden");
     resourcesBtn.classList.remove("is-hidden");
-  } else {
+    loginBtn.classList.add("is-hidden");
+    signupBtn.classList.add("is-hidden");
     myAccountBtn.classList.remove("is-hidden");
-    userAccountBtn.classList.add("is-hidden");
+  } else {
     resourcesBtn.classList.add("is-hidden");
+    loginBtn.classList.remove("is-hidden");
+    signupBtn.classList.remove("is-hidden");
+    myAccountBtn.classList.add("is-hidden");
   }
 }
 
