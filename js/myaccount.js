@@ -12,7 +12,12 @@ const ProfileDisplayBtn = document.getElementById("dropdown-profile-display");
 
 // ----- FUNCTIONS | ProfileDispaly()
 function ProfileDisplay() {
-  alert("Profile Display");
+  let inputFirstName = sessionStorage.getItem("keyFirstName");
+  let inputLastName = sessionStorage.getItem("keyLastName");
+  let inputEmailAddress = sessionStorage.getItem("keyEmailAddress");
+  document.getElementById("firstNameProfileInput").value = inputFirstName;
+  document.getElementById("lastNameProfileInput").value = inputLastName;
+  document.getElementById("emailAddressProfileInput").value = inputEmailAddress;
 }
 
 // ----- FUNCTIONS | SectionLogOut()

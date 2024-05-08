@@ -172,7 +172,7 @@
                   aria-label="Close"
                 ></button>
                 <h2
-                  class="modal-title display-3 mb-3"
+                  class="modal-title display-5 mb-3"
                   style="float: left"
                   id="modalProfileDisplay"
                 >
@@ -182,36 +182,168 @@
               <div class="modal-body">
                 <div class="container-fluid">
                   <form class="ProfileDisplayForm" id="ProfileDisplayForm">
-                    <!-- <div class="form-floating">
-                  <input
-                  type="text"
-                  class="form-control"
-                  id="firstNameInput"
-                  placeholder="firstName"
-                  required
-                />
-                <label for="floatingFirstName">First Name</label>
-                <div class="valid-feedback">Looks good!</div>
-              </div>
-              <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lastNameInput"
-                  placeholder="lastName"
-                />
-                <label for="floatingLastName">Last Name</label>
-              </div>
-              <div class="form-floating">
-                <input
-                  type="email"
-                  class="form-control"
-                  id="emailAddressInput"
-                  placeholder="name@example.com"
-                  required
-                />
-                <label for="floatingInput">Email address</label>
-              </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            readonly
+                            class="form-control"
+                            id="clubNameProfileInput"
+                            placeholder="firstName"
+                            required
+                          />
+                          <label for="floatingClubNameProfile">Club Name</label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-floating mb-2">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="registeredPositionProfileInput"
+                            placeholder="middleName"
+                          />
+                          <label for="floatingRegisteredPositionProfile"
+                            >Registered Position</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col">
+                        <!-- <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="registeredStatusProfileInput"
+                            placeholder="middleName"
+                          />
+                          <label for="floatingStatusProfile">Status</label> 
+                          </div>-->
+                        <div class="form-floating">
+                          <select class="form-select" id="floatingSelectGrid">
+                            <option selected>Please select status</option>
+                            <option value="1">Active</option>
+                            <option value="2">Inactive</option>
+                            <option value="3">On-Leave</option>
+                            <option value="4">.</option>
+                            <option value="4">..</option>
+                          </select>
+                          <label for="floatingSelectGrid"
+                            >Membership Status</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            readonly
+                            class="form-control"
+                            id="firstNameProfileInput"
+                            placeholder="firstName"
+                            required
+                          />
+                          <label for="floatingFirstNameProfile"
+                            >First Name</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="middleNameProfileInput"
+                            placeholder="middleName"
+                          />
+                          <label for="floatingMiddleNameProfile"
+                            >Middle Name</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-floating mb-2">
+                          <input
+                            type="text"
+                            readonly
+                            class="form-control"
+                            id="lastNameProfileInput"
+                            placeholder="lastName"
+                            required
+                          />
+                          <label for="floatingLastNameProfile">Last Name</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-floating">
+                          <input
+                            type="email"
+                            readonly
+                            class="form-control"
+                            id="emailAddressProfileInput"
+                            placeholder="name@example.com"
+                            required
+                          />
+                          <label for="floatingEmailAddressProfile"
+                            >Email Address</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="input-group mb-2">
+                          <span class="input-group-text" id="button-addon1">
+                            +63
+                          </span>
+                          <div class="form-floating">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="mobileNumberProfileInput"
+                              placeholder="lastName"
+                              required
+                            />
+                            <label for="floatingmobileNumberProfile"
+                              >Mobile Number</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            readonly
+                            class="form-control"
+                            id="companyNameProfileInput"
+                            placeholder="firstName"
+                            required
+                          />
+                          <label for="floatingCompanyNameProfile"
+                            >Company Name</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-floating mb-2">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="registeredCompanyPositionProfileInput"
+                            placeholder="middleName"
+                          />
+                          <label for="floatingCompanyPositionProfile"
+                            >Position</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <!--
               <div class="form-floating">
                 <input
                   type="password"
@@ -427,27 +559,32 @@
               <div class="modal-body">
                 <div class="container-fluid">
                   <form class="MainForm" id="MainForm">
-                    <div class="form-floating">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="firstNameInput"
-                        placeholder="firstName"
-                        required
-                      />
-                      <label for="floatingFirstName">First Name</label>
-                      <div class="valid-feedback">Looks good!</div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="firstNameInput"
+                            placeholder="firstName"
+                            required
+                          />
+                          <label for="floatingFirstName">First Name</label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-floating mb-2">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="lastNameInput"
+                            placeholder="lastName"
+                          />
+                          <label for="floatingLastName">Last Name</label>
+                        </div>
+                      </div>
                     </div>
-                    <div class="form-floating mb-3">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="lastNameInput"
-                        placeholder="lastName"
-                      />
-                      <label for="floatingLastName">Last Name</label>
-                    </div>
-                    <div class="form-floating">
+                    <div class="form-floating mb-2">
                       <input
                         type="email"
                         class="form-control"
@@ -457,7 +594,7 @@
                       />
                       <label for="floatingInput">Email address</label>
                     </div>
-                    <div class="form-floating">
+                    <div class="form-floating mb-1">
                       <input
                         type="password"
                         class="form-control"
