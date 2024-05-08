@@ -26,6 +26,32 @@ const auth = getAuth(app);
 const myAccountName = document.getElementById("dropdown-account-name");
 const createUserBtn = document.getElementById("btn-create-user");
 
+const notyf = new Notyf({
+  duration: 1000,
+  position: {
+    x: "right",
+    y: "top",
+  },
+  types: [
+    {
+      type: "warning",
+      background: "orange",
+      icon: {
+        className: "material-icons",
+        tagName: "i",
+        text: "warning",
+        dismissible: true,
+      },
+    },
+    {
+      type: "error",
+      background: "indianred",
+      duration: 2000,
+      dismissible: true,
+    },
+  ],
+});
+
 // ----- FUNCTIONS | CreateUser()
 let CreateUser = (evt) => {
   evt.preventDefault();
@@ -47,7 +73,10 @@ let CreateUser = (evt) => {
     validate_field(firstName) === false ||
     validate_field(lastName) === false
   ) {
-    alert("Invalid Input. Please complete all input values!");
+    notyf.error({
+      message: "Invalid Input. Please complete all input values!",
+      duration: 3000,
+    });
     return;
     // Don't continue to run code
   }
@@ -96,18 +125,22 @@ let CreateUser = (evt) => {
           // ...
         });
 
-        alert(
-          `User ${emailAddress} created. \nVerification email was sent to your address. \nOnce verified, you can now Log-In`
-        );
+        notyf.open({
+          type: warning,
+          message: `User ${emailAddress} created. \nVerification email was sent to your address. \nOnce verified, you can now Log-In`,
+          duration: 5000,
+        });
       })
       .catch((error) => {
-        // alert(error.message);
         const errorCode = error.code;
         const errorMessage = error.message;
         ManageErrors(errorCode, emailAddress);
       });
   } else {
-    alert("Please enter matching Passwords!");
+    notyf.error({
+      message: "Please enter matching Passwords!",
+      duration: 3000,
+    });
   }
 };
 
@@ -116,8 +149,12 @@ let CreateUser = (evt) => {
 function validate_email(email) {
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
     return true;
+  } else {
+    notyf.error({
+      message: "You have entered an invalid email address!",
+      duration: 3000,
+    });
   }
-  alert("You have entered an invalid email address!");
   return false;
 }
 
@@ -134,7 +171,6 @@ function validate_field(field) {
   if (field == null) {
     return false;
   }
-
   if (field.length <= 0) {
     return false;
   } else {
@@ -144,21 +180,29 @@ function validate_field(field) {
 
 function ManageErrors(errorCode, emailAddress) {
   if (errorCode == "auth/weak-password") {
-    alert(`Password should be at least 6 characters (auth/weak-password).`);
+    notyf.error({
+      message: `Password should be at least 6 characters (auth/weak-password).`,
+    });
     return;
   } else if (errorCode == "auth/email-already-in-use") {
-    alert(
-      `User ${emailAddress} Already in use. \nPlease use new sign-up email`
-    );
+    notyf.error({
+      message: `User ${emailAddress} Already in use. \nPlease use new sign-up email`,
+    });
     return;
   } else if (errorCode == "auth/missing-password") {
-    alert(`Please input password! (auth/missing-password)`);
+    notyf.error({
+      message: `Please input password! (auth/missing-password)`,
+    });
     return;
   } else if (errorCode == "auth/invalid-credential") {
-    alert(`Please input correct password! (auth/missing-password)`);
+    notyf.error({
+      message: `Please input correct password! (auth/missing-password)`,
+    });
     return;
   } else if (errorCode == "auth/too-many-requests") {
-    alert(`Error! (auth/too-many-requests)`);
+    notyf.error({
+      message: `Error! (auth/too-many-requests)`,
+    });
     return;
   }
 }

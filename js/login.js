@@ -2,13 +2,11 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
-
 import {
   getAuth,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
 } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
-
 import {
   getDatabase,
   ref,
@@ -26,6 +24,32 @@ import { CheckHeader } from "./header.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+
+const notyf = new Notyf({
+  duration: 1000,
+  position: {
+    x: "right",
+    y: "top",
+  },
+  types: [
+    {
+      type: "warning",
+      background: "orange",
+      icon: {
+        className: "material-icons",
+        tagName: "i",
+        text: "warning",
+        dismissible: true,
+      },
+    },
+    {
+      type: "error",
+      background: "indianred",
+      duration: 2000,
+      dismissible: true,
+    },
+  ],
+});
 
 const myAccountName = document.getElementById("dropdown-account-name");
 const logInBtn = document.getElementById("btn-login");
@@ -53,7 +77,6 @@ let LogInUser = () => {
     validate_email(emailAddress) == false ||
     validate_password(loginPassword) == false
   ) {
-    // alert("Email or password not OK");
     return;
     // Don't continue to run code
   }
@@ -92,7 +115,10 @@ let LogInUser = () => {
               sessionStorage.setItem("keyFirstName", realtimeDB.firstName);
               sessionStorage.setItem("keyLastName", realtimeDB.lastName);
 
-              alert(`User ${realtimeDB.emailAddress} Log-In Successfully!`);
+              notyf.success({
+                message: `User ${realtimeDB.emailAddress} Log-In Successfully!`,
+                duration: 5000,
+              });
 
               myAccountName.innerText = `Hi ${sessionStorage.getItem(
                 "keyFirstName"
@@ -107,7 +133,10 @@ let LogInUser = () => {
             console.error(error);
           });
       } else {
-        alert("Email not verified\nKindly verify email sent to your address.");
+        notyf.error({
+          message:
+            "Email not verified. \nKindly verify email sent to your address.",
+        });
         return;
       }
     })
@@ -127,14 +156,18 @@ function validate_email(email) {
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
     return true;
   }
-  alert("You have entered an invalid email address!");
+  notyf.error({
+    message: "You have entered an invalid email address!",
+  });
   return false;
 }
 
 function validate_password(password) {
   //Firebase only accepts lengths greater than 6
-  if (password < 6) {
-    alert("Password should be at least 6 characters!");
+  if (password.length < 6) {
+    notyf.error({
+      message: "Password should be at least 6 characters!",
+    });
     return false;
   } else {
     return true;
@@ -153,11 +186,14 @@ let SectionResetPassword = (evt) => {
 
   // Validate input fields
   if (validate_email(resetPasswordEmailAddress) == false) {
-    // alert("Email or password not OK");
     return;
     // Don't continue to run code
   }
-  alert(`Password reset email sent to ${resetPasswordEmailAddress}!`);
+  notyf.open({
+    type: "warning",
+    message: `Password reset email sent to ${resetPasswordEmailAddress}!`,
+    duration: 5000,
+  });
   // const auth = getAuth();
   sendPasswordResetEmail(auth, resetPasswordEmailAddress)
     .then(() => {
@@ -184,8 +220,11 @@ let SectionNavResetPassword = (evt) => {
   ("user strict");
 
   let emailAddress = sessionStorage.getItem("keyEmailAddress");
-  alert(`Password reset email sent to ${emailAddress}!`);
-
+  notyf.open({
+    type: "warning",
+    message: `Password reset email sent to ${emailAddress}!`,
+    duration: 5000,
+  });
   // const auth = getAuth();
   sendPasswordResetEmail(auth, emailAddress)
     .then(() => {
@@ -202,21 +241,29 @@ let SectionNavResetPassword = (evt) => {
 
 function ManageErrors(errorCode, emailAddress) {
   if (errorCode == "auth/weak-password") {
-    alert(`Password should be at least 6 characters (auth/weak-password).`);
+    notyf.error({
+      message: `Password should be at least 6 characters (auth/weak-password).`,
+    });
     return;
   } else if (errorCode == "auth/email-already-in-use") {
-    alert(
-      `User ${emailAddress} Already in use. \nPlease use new sign-up email`
-    );
+    notyf.error({
+      message: `User ${emailAddress} Already in use. \nPlease use new sign-up email`,
+    });
     return;
   } else if (errorCode == "auth/missing-password") {
-    alert(`Please input password! (auth/missing-password)`);
+    notyf.error({
+      message: `Please input password! (auth/missing-password)`,
+    });
     return;
   } else if (errorCode == "auth/invalid-credential") {
-    alert(`Please input correct password! (auth/missing-password)`);
+    notyf.error({
+      message: `Please input correct password! (auth/missing-password)`,
+    });
     return;
   } else if (errorCode == "auth/too-many-requests") {
-    alert(`Error! (auth/too-many-requests)`);
+    notyf.error({
+      message: `Error! (auth/too-many-requests)`,
+    });
     return;
   }
 }
